@@ -19,6 +19,7 @@ function CreatePerson() {
   const [age, setAge] = useState<number | "">("");
 
   const nameInvalid = validated && name.trim() === "";
+  const nameTooLong = validated && name.trim().length > 200;
   const ageInvalid = validated && age !== "" && Number(age) < 0;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +61,8 @@ function CreatePerson() {
             isInvalid={nameInvalid}
           />
           <Form.Control.Feedback type="invalid">
-            O nome é obrigatório.
+            {nameInvalid && <div>O nome é obrigatório.</div>}
+            {nameTooLong && <div>O nome deve ter no máximo 200 caracteres.</div>}
           </Form.Control.Feedback>
         </Form.Group>
 

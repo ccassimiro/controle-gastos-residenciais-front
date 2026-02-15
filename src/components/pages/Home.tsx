@@ -3,7 +3,7 @@ import home_image from '../../img/savings.svg';
 import LinkButton from "../layout/LinkButton.tsx";
 
 
-function Categories () {
+function Home () {
   return (
     <section className={styles.home_container}>
       <h1>Bem-vindo ao <span>CGR - Controle de Gastos Residenciais</span></h1>
@@ -16,4 +16,4 @@ function Categories () {
   )
 }
 
-export default Categories;
+export default Home;

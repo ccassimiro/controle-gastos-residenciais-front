@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home.tsx";
 import People from "./components/pages/People.tsx";
-import Categories from "./components/pages/Home.tsx";
+import Categories from "./components/pages/Categories.tsx";
 import Transactions from "./components/pages/Transactions.tsx";
 import Container from './components/layout/Container.tsx';
 import CreatePerson from './components/people/CreatePerson.tsx';

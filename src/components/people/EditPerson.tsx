@@ -32,6 +32,7 @@ function EditPerson() {
   const [validated, setValidated] = useState(false);
 
   const nameInvalid = validated && name.trim() === "";
+  const nameTooLong = validated && name.trim().length > 200;
   const ageInvalid = validated && age !== "" && Number(age) < 0;
 
   useEffect(() => {
@@ -124,7 +125,8 @@ function EditPerson() {
             isInvalid={nameInvalid}
           />
           <Form.Control.Feedback type="invalid">
-            O nome é obrigatório.
+            {nameInvalid && <div>O nome é obrigatório.</div>}
+            {nameTooLong && <div>O nome deve ter no máximo 200 caracteres.</div>}
           </Form.Control.Feedback>
         </Form.Group>
 
