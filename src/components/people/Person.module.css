@@ -1,0 +1,13 @@
+.people_container {
+    width: 750px;
+    margin: 0 auto;
+    padding: 3em;
+}
+
+.create_container h1 {
+    margin-bottom: 0.5em;
+}
+
+.create_container p {
+    color: #7B7B7B;
+}
