@@ -22,3 +22,9 @@ html, body, #root {
   color: #FFBB33;
   background-color: #222;
 }
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-image: none !important;
+  padding-right: 0.75rem !important;
+}

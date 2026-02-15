@@ -27,7 +27,6 @@ export async function deletePerson(id: string) {
   await api.delete(`/people/${id}`);
 }
 
-export async function updatePerson(id: string, dto: { id: string, name: string; age: number }) {
-  const res = await api.put(`/people/${id}`, dto);
-  return res.data;
+export async function updatePerson(id: string, dto: Person) {
+  await api.put(`/people/${id}`, dto);
 }

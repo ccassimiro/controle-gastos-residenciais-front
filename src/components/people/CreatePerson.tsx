@@ -11,7 +11,7 @@ import LinkButton from "../layout/LinkButton.tsx";
 function CreatePerson() {
   const navigate = useNavigate();
 
-  // validação bootstrap (mesmo padrão do EditPerson)
+  // validação bootstrap
   const [validated, setValidated] = useState(false);
 
   const [error, setError] = useState<string>();
@@ -28,7 +28,7 @@ function CreatePerson() {
     setError("");
 
     // validações locais
-    if (name.trim() === "" || age === "" || Number(age) < 0) return;
+    if (name.trim() === "" || name.trim().length > 200 || age === "" || Number(age) < 0) return;
 
     try {
       await createPerson({
@@ -58,7 +58,7 @@ function CreatePerson() {
             placeholder="Nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            isInvalid={nameInvalid}
+            isInvalid={nameInvalid || nameTooLong}
           />
           <Form.Control.Feedback type="invalid">
             {nameInvalid && <div>O nome é obrigatório.</div>}

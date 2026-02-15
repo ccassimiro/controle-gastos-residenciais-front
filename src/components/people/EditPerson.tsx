@@ -70,9 +70,8 @@ function EditPerson() {
     if (!id) return;
 
     //validações locais
-    if (name.trim() === "" || (age !== "" && Number(age) < 0)) return;
-
-    // aqui você chamaria o updatePerson(...)
+    if (name.trim() === "" || name.trim().length > 200 || age === "" || Number(age) < 0) return;
+    
     try {
       await updatePerson(id.trim(), {
         id: idToValidate.trim(),
@@ -122,7 +121,7 @@ function EditPerson() {
             placeholder="Nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            isInvalid={nameInvalid}
+            isInvalid={nameInvalid || nameTooLong}
           />
           <Form.Control.Feedback type="invalid">
             {nameInvalid && <div>O nome é obrigatório.</div>}

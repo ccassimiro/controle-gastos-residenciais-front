@@ -34,6 +34,7 @@ function People() {
     (location.state as any)?.successMessage ?? null
   );
 
+  // Aviso que uma pessoa foi Criada/Atualizada.
   useEffect(() => {
     if (!successMessage) return;
 
@@ -92,7 +93,7 @@ function People() {
 
   return (
     <div className={styles.people_container}>
-      <h1>Pessoas Cadastradas</h1>
+      <h1>Pessoas</h1>
 
       {successMessage && (
         <Alert
@@ -108,7 +109,7 @@ function People() {
       <LinkButton to="/people/create" text="Cadastrar pessoa" />
 
       <div className="mt-4">
-        <Table striped bordered hover responsive className="text-center align-middle">
+        <Table striped bordered responsive className="text-center align-middle">
           <thead>
           <tr>
             <th>#</th>
