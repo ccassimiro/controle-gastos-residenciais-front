@@ -83,7 +83,8 @@ function Categories() {
         </Alert>
       )}
 
-      <LinkButton to="/categories/create" text="Cadastrar categoria" />
+      <LinkButton className="me-2" to="/categories/create" text="Cadastrar categoria" />
+      <LinkButton variant="warning" to="/categories/summary" text="Total por Categoria" />
 
       <div className="mt-4">
         <Table striped bordered responsive className="text-center align-middle">

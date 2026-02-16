@@ -106,7 +106,8 @@ function People() {
         </Alert>
       )}
 
-      <LinkButton to="/people/create" text="Cadastrar pessoa" />
+      <LinkButton className="me-2" to="/people/create" text="Cadastrar pessoa"/>
+      <LinkButton variant="warning" to="/people/summary" text="Total por pessoa" />
 
       <div className="mt-4">
         <Table striped bordered responsive className="text-center align-middle">

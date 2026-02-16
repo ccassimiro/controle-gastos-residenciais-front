@@ -8,6 +8,14 @@ export type Person = {
 
 type CreatePersonDTO = Omit<Person, "id">;
 
+type PersonSummaryDTO = {
+  id: string;
+  name: string;
+  expense: number;
+  income: number;
+  balance: number;
+}
+
 export async function getPeople() {
   const res = await api.get<Person[]>("/people");
   return res.data;
@@ -29,4 +37,9 @@ export async function deletePerson(id: string) {
 
 export async function updatePerson(id: string, dto: Person) {
   await api.put(`/people/${id}`, dto);
+}
+
+export async function getPeopleSummary() {
+  const res = await api.get<PersonSummaryDTO[]>("/people/transactions/totals");
+  return res.data;
 }

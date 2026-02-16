@@ -6,12 +6,13 @@ type Props = {
   to: string;
   text: string;
   variant?: string;
+  className?: string;
 }
 
 function LinkButton(props: Props) {
   const navigate = useNavigate();
   return (
-    <Button variant={props.variant ?? "primary"} onClick={() => navigate(`${props.to}`)} >
+    <Button className={props.className} variant={props.variant ?? "primary"} onClick={() => navigate(`${props.to}`)} >
       {props.text}
     </Button>
 

@@ -4,9 +4,11 @@ import Home from "./components/pages/Home.tsx";
 import People from "./components/pages/People.tsx";
 import CreatePerson from './components/people/CreatePerson.tsx';
 import EditPerson from './components/people/EditPerson.tsx';
+import PeopleSummary from "./components/people/PeopleSummary.tsx";
 
 import Categories from "./components/pages/Categories.tsx";
 import CreateCategory from "./components/categories/CreateCategory.tsx";
+import CategoriesSummary from "./components/categories/CategoriesSummary.tsx";
 
 import Transactions from "./components/pages/Transactions.tsx";
 import CreateTransaction from "./components/transactions/CreateTransaction.tsx";
@@ -31,9 +33,11 @@ function App() {
           <Route path="/people" element={<People />} />
           <Route path="/people/create" element={<CreatePerson />} />
           <Route path="/people/edit/:id" element={<EditPerson />} />
+          <Route path="/people/summary" element={<PeopleSummary />} />
 
           <Route path="/categories" element={<Categories />} />
           <Route path="/categories/create" element={<CreateCategory />} />
+          <Route path="/categories/summary" element={<CategoriesSummary />} />
 
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/transactions/create" element={<CreateTransaction />} />
