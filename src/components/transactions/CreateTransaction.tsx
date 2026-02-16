@@ -9,7 +9,8 @@ import LinkButton from "../layout/LinkButton.tsx";
 import { getCategories } from "../../services/CategoriesServices.ts";
 import { getPeople } from "../../services/PeopleServices.ts";
 import { createTransaction } from "../../services/TransactionsServices.ts";
-import { sanitizeMoneyInput, moneyToNumber } from "../utils/utils.ts";
+import { moneyToNumber } from "../../utils/utils.ts";
+import { NumericFormat } from "react-number-format";
 
 type Category = {
   id: string;
@@ -105,6 +106,8 @@ function CreateTransaction() {
         return;
       }
 
+      console.log(`O valor é ${moneyToNumber(value)}`);
+
       await createTransaction({
         description: description,
         value: moneyToNumber(value),
@@ -146,13 +149,26 @@ function CreateTransaction() {
         <Form.Group className="mb-3" controlId="value">
           <Form.Label>Valor</Form.Label>
 
-          <Form.Control
-            type="text"
-            inputMode="decimal"
-            placeholder="10.99"
+          <NumericFormat
             value={value}
-            onChange={(e) => setValue(sanitizeMoneyInput(e.target.value))}
+            onValueChange={(values) => setValue(values.formattedValue)} // "R$ 1.234,56"
+            thousandSeparator="."
+            decimalSeparator=","
+            decimalScale={2}
+            fixedDecimalScale
+            allowNegative={false}
+            prefix="R$ "
+            className="form-control"
+            placeholder="Valor"
           />
+
+          {/*<Form.Control*/}
+          {/*  type="text"*/}
+          {/*  inputMode="decimal"*/}
+          {/*  placeholder="10.99"*/}
+          {/*  value={value}*/}
+          {/*  onChange={(e) => setValue(sanitizeMoneyInput(e.target.value))}*/}
+          {/*/>*/}
 
           <Form.Control.Feedback type="invalid">
             {/* validações aqui */}

@@ -6,6 +6,7 @@ import LinkButton from "../layout/LinkButton.tsx";
 import Table from "react-bootstrap/esm/Table";
 import Spinner from "react-bootstrap/esm/Spinner";
 import { useLocation, useNavigate } from "react-router-dom";
+import { handlePurposeType } from "../../utils/utils.ts";
 
 type Category = {
   id: string;
@@ -55,18 +56,7 @@ function Categories() {
     return () => clearTimeout(t);
   }, [successMessage, navigate, location.pathname]);
 
-  function handlePurposeType(type: number): string {
-    switch (type) {
-      case 1:
-        return "Despesa";
-      case 2:
-        return "Receita";
-      case 3:
-        return "Despesa/Receita";
-      default:
-          return "Desconhecido";
-    }
-  }
+
 
   return(
     <div className={styles.people_container}>

@@ -6,6 +6,7 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import {useLocation, useNavigate} from "react-router-dom";
 import Alert from "react-bootstrap/esm/Alert";
 import LinkButton from "../layout/LinkButton.tsx";
+import { numberToMoneyBRL, handlePurposeType } from "../../utils/utils.ts";
 
 
 type Transaction = {
@@ -38,19 +39,6 @@ function Transactions() {
   const [successMessage, setSuccessMessage] = useState<string | null>(
     (location.state as any)?.successMessage ?? null
   );
-
-  function handlePurposeType(type: number): string {
-    switch (type) {
-      case 1:
-        return "Despesa";
-      case 2:
-        return "Receita";
-      case 3:
-        return "Despesa/Receita";
-      default:
-        return "Desconhecido";
-    }
-  }
 
   // Aviso que uma transação foi Criada.
   useEffect(() => {
@@ -105,7 +93,7 @@ function Transactions() {
           <tr>
             <th>#</th>
             <th>Descrição</th>
-            <th>Valor</th>
+            <th>Valor (R$)</th>
             <th>Categoria</th>
             <th>Tipo</th>
             <th>Pessoa</th>
@@ -132,7 +120,7 @@ function Transactions() {
 
           {!loading && !error && transactions.length === 0 && (
             <tr>
-              <td colSpan={4} className="py-4 text-muted">
+              <td colSpan={5} className="py-4 text-muted">
                 Nenhuma transação cadastrada.
               </td>
             </tr>
@@ -144,7 +132,7 @@ function Transactions() {
               <tr key={transaction.id}>
                 <td>{index + 1}</td>
                 <td>{transaction.description}</td>
-                <td>{transaction.value}</td>
+                <td>{numberToMoneyBRL(transaction.value)}</td>
                 <td>{transaction.category.description}</td>
                 <td>{handlePurposeType(transaction.purposeType)}</td>
                 <td>{transaction.person.name}</td>

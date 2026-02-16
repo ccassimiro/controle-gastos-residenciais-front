@@ -4,6 +4,7 @@ import { getCategoriesSummary } from "../../services/CategoriesServices.ts";
 import Table from "react-bootstrap/esm/Table";
 import Spinner from "react-bootstrap/esm/Spinner";
 import LinkButton from "../layout/LinkButton.tsx";
+import { numberToMoneyBRL, handlePurposeType } from "../../utils/utils.ts";
 
 type CategorySummary = {
   id: string;
@@ -47,7 +48,7 @@ function CategoriesSummary() {
             <th>#</th>
             <th>Nome</th>
             <th>Tipo</th>
-            <th>Balanço</th>
+            <th>Balanço (R$)</th>
           </tr>
           </thead>
 
@@ -83,8 +84,8 @@ function CategoriesSummary() {
               <tr key={category.id}>
                 <td>{index + 1}</td>
                 <td>{category.name}</td>
-                <td>{category.purposeType}</td>
-                <td>{category.total}</td>
+                <td>{handlePurposeType(category.purposeType)}</td>
+                <td>{numberToMoneyBRL(category.total)}</td>
               </tr>
             ))}
           </tbody>

@@ -4,17 +4,23 @@ import { getPeopleSummary } from "../../services/PeopleServices.ts";
 import Table from "react-bootstrap/esm/Table";
 import Spinner from "react-bootstrap/esm/Spinner";
 import LinkButton from "../layout/LinkButton.tsx";
+import { numberToMoneyBRL } from "../../utils/utils.ts";
 
-type PersonSummary = {
-  id: string;
-  name: string;
-  expense: number;
-  income: number;
-  balance: number;
+type PeopleSummary = {
+  people: {
+    id: string;
+    name: string;
+    expense: number;
+    income: number;
+    balance: number;
+  }[]
+  totalExpense: number;
+  totalIncome: number;
+  totalBalance: number;
 }
 
 function PeopleSummary() {
-  const [peopleSummary, setPeopleSummary] = useState<PersonSummary[]>([]);
+  const [peopleSummary, setPeopleSummary] = useState<PeopleSummary>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,9 +53,9 @@ function PeopleSummary() {
           <tr>
             <th>#</th>
             <th>Nome</th>
-            <th>Receita</th>
-            <th>Despesa</th>
-            <th>Balanço</th>
+            <th>Receita (R$)</th>
+            <th>Despesa (R$)</th>
+            <th>Balanço (R$)</th>
           </tr>
           </thead>
 
@@ -65,13 +71,13 @@ function PeopleSummary() {
 
           {!loading && error && (
             <tr>
-              <td colSpan={4} className="py-4 text-danger">
+              <td colSpan={5} className="py-4 text-danger">
                 {error}
               </td>
             </tr>
           )}
 
-          {!loading && !error && peopleSummary.length === 0 && (
+          {!loading && !error && peopleSummary?.people.length === 0 && (
             <tr>
               <td colSpan={4} className="py-4 text-muted">
                 Nenhum dado de balanço para ser mostrado
@@ -81,18 +87,42 @@ function PeopleSummary() {
 
           {!loading &&
             !error &&
-            peopleSummary.map((person, index) => (
+            peopleSummary?.people.map((person, index) => (
               <tr key={person.id}>
                 <td>{index + 1}</td>
                 <td>{person.name}</td>
-                <td>{person.income}</td>
-                <td>{person.expense}</td>
-                <td>{person.balance}</td>
+                <td>{numberToMoneyBRL(person.income)}</td>
+                <td>{numberToMoneyBRL(person.expense)}</td>
+                <td>{numberToMoneyBRL(person.balance)}</td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+
+      {peopleSummary &&
+          <div className="mt-4">
+              <h1>Totais</h1>
+              <Table striped bordered responsive className="text-center align-middle">
+                  <thead>
+                  <tr>
+                      <th>Receita (R$)</th>
+                      <th>Despesa (R$)</th>
+                      <th>Balanço (R$)</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  {/*key fixa porque só vai ter 1 linha obrigatóriamente*/}
+                  <tr key={1}>
+                      <td>{numberToMoneyBRL(peopleSummary.totalIncome)}</td>
+                      <td>{numberToMoneyBRL(peopleSummary.totalExpense)}</td>
+                      <td>{numberToMoneyBRL(peopleSummary.totalBalance)}</td>
+                  </tr>
+                  </tbody>
+              </Table>
+          </div>
+      }
 
       <LinkButton variant="secondary" to={`/people`} text="Voltar" />
     </div>
