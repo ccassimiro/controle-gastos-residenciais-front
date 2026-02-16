@@ -9,10 +9,15 @@ export type Category = {
 type CreateCategoryDTO = Omit<Category, "id">;
 
 type CategorySummaryDTO = {
-  id: string;
-  name: string;
-  purposeType: number;
-  total: number;
+  categories: {
+    id: string;
+    name: string;
+    purposeType: number;
+    total: number;
+  }[]
+  totalExpense: number;
+  totalIncome: number;
+  totalBalance: number;
 }
 
 
@@ -26,6 +31,6 @@ export async function createCategory(dto: CreateCategoryDTO) {
 }
 
 export async function getCategoriesSummary() {
-  const res = await api.get<CategorySummaryDTO[]>("/categories/transactions/totals");
+  const res = await api.get<CategorySummaryDTO>("/categories/transactions/totals");
   return res.data;
 }

@@ -7,14 +7,19 @@ import LinkButton from "../layout/LinkButton.tsx";
 import { numberToMoneyBRL, handlePurposeType } from "../../utils/utils.ts";
 
 type CategorySummary = {
-  id: string;
-  name: string;
-  purposeType: number;
-  total: number;
+  categories: {
+    id: string;
+    name: string;
+    purposeType: number;
+    total: number;
+  }[]
+  totalExpense: number;
+  totalIncome: number;
+  totalBalance: number;
 }
 
 function CategoriesSummary() {
-  const [categoriesSummary, setCategoriesSummary] = useState<CategorySummary[]>([]);
+  const [categoriesSummary, setCategoriesSummary] = useState<CategorySummary>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,7 +75,7 @@ function CategoriesSummary() {
             </tr>
           )}
 
-          {!loading && !error && categoriesSummary.length === 0 && (
+          {!loading && !error && categoriesSummary?.categories.length === 0 && (
             <tr>
               <td colSpan={4} className="py-4 text-muted">
                 Nenhum dado de balanço para ser mostrado
@@ -80,7 +85,7 @@ function CategoriesSummary() {
 
           {!loading &&
             !error &&
-            categoriesSummary.map((category, index) => (
+            categoriesSummary?.categories.map((category, index) => (
               <tr key={category.id}>
                 <td>{index + 1}</td>
                 <td>{category.name}</td>
@@ -91,6 +96,30 @@ function CategoriesSummary() {
           </tbody>
         </Table>
       </div>
+
+      {categoriesSummary &&
+          <div className="mt-4">
+              <h1>Totais</h1>
+              <Table striped bordered responsive className="text-center align-middle">
+                  <thead>
+                  <tr>
+                      <th>Receita (R$)</th>
+                      <th>Despesa (R$)</th>
+                      <th>Balanço (R$)</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  {/*key fixa porque só vai ter 1 linha obrigatóriamente*/}
+                  <tr key={1}>
+                      <td>{numberToMoneyBRL(categoriesSummary.totalIncome)}</td>
+                      <td>{numberToMoneyBRL(categoriesSummary.totalExpense)}</td>
+                      <td>{numberToMoneyBRL(categoriesSummary.totalBalance)}</td>
+                  </tr>
+                  </tbody>
+              </Table>
+          </div>
+      }
 
       <LinkButton variant="secondary" to={`/categories`} text="Voltar" />
     </div>
