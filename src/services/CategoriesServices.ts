@@ -14,11 +14,13 @@ type CategorySummaryDTO = {
     name: string;
     purposeType: number;
     total: number;
-  }[]
-  totalExpense: number;
-  totalIncome: number;
-  totalBalance: number;
-}
+  }[];
+  totals: {
+    totalExpense: number;
+    totalIncome: number;
+    totalBalance: number
+  };
+};
 
 
 export async function getCategories() {

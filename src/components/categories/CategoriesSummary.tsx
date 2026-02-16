@@ -12,11 +12,13 @@ type CategorySummary = {
     name: string;
     purposeType: number;
     total: number;
-  }[]
-  totalExpense: number;
-  totalIncome: number;
-  totalBalance: number;
-}
+  }[];
+  totals: {
+    totalExpense: number;
+    totalIncome: number;
+    totalBalance: number
+  };
+};
 
 function CategoriesSummary() {
   const [categoriesSummary, setCategoriesSummary] = useState<CategorySummary>();
@@ -112,9 +114,9 @@ function CategoriesSummary() {
                   <tbody>
                   {/*key fixa porque só vai ter 1 linha obrigatóriamente*/}
                   <tr key={1}>
-                      <td>{numberToMoneyBRL(categoriesSummary.totalIncome)}</td>
-                      <td>{numberToMoneyBRL(categoriesSummary.totalExpense)}</td>
-                      <td>{numberToMoneyBRL(categoriesSummary.totalBalance)}</td>
+                      <td>{numberToMoneyBRL(categoriesSummary.totals.totalIncome)}</td>
+                      <td>{numberToMoneyBRL(categoriesSummary.totals.totalExpense)}</td>
+                      <td>{numberToMoneyBRL(categoriesSummary.totals.totalBalance)}</td>
                   </tr>
                   </tbody>
               </Table>
