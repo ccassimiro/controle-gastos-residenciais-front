@@ -116,7 +116,7 @@ function People() {
             <th>#</th>
             <th>Nome</th>
             <th>Idade</th>
-            <th></th>
+            <th>Ações</th>
           </tr>
           </thead>
 

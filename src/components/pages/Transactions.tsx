@@ -103,7 +103,7 @@ function Transactions() {
           <tbody>
           {loading && (
             <tr>
-              <td colSpan={4} className="py-4">
+              <td colSpan={6} className="py-4">
                 <Spinner animation="border" role="status" />
                 <span className="ms-2">Carregando...</span>
               </td>
@@ -112,7 +112,7 @@ function Transactions() {
 
           {!loading && error && (
             <tr>
-              <td colSpan={4} className="py-4 text-danger">
+              <td colSpan={6} className="py-4 text-danger">
                 {error}
               </td>
             </tr>
@@ -120,7 +120,7 @@ function Transactions() {
 
           {!loading && !error && transactions.length === 0 && (
             <tr>
-              <td colSpan={5} className="py-4 text-muted">
+              <td colSpan={6} className="py-4 text-muted">
                 Nenhuma transação cadastrada.
               </td>
             </tr>

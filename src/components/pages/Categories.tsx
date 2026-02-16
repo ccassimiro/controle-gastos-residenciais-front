@@ -89,7 +89,7 @@ function Categories() {
           <tbody>
           {loading && (
             <tr>
-              <td colSpan={4} className="py-4">
+              <td colSpan={3} className="py-4">
                 <Spinner animation="border" role="status" />
                 <span className="ms-2">Carregando...</span>
               </td>
@@ -98,7 +98,7 @@ function Categories() {
 
           {!loading && error && (
             <tr>
-              <td colSpan={4} className="py-4 text-danger">
+              <td colSpan={3} className="py-4 text-danger">
                 {error}
               </td>
             </tr>
@@ -106,7 +106,7 @@ function Categories() {
 
           {!loading && !error && categories.length === 0 && (
             <tr>
-              <td colSpan={4} className="py-4 text-muted">
+              <td colSpan={3} className="py-4 text-muted">
                 Nenhuma categoria cadastrada.
               </td>
             </tr>

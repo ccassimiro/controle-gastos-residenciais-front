@@ -62,7 +62,7 @@ function PeopleSummary() {
           <tbody>
           {loading && (
             <tr>
-              <td colSpan={4} className="py-4">
+              <td colSpan={5} className="py-4">
                 <Spinner animation="border" role="status" />
                 <span className="ms-2">Carregando...</span>
               </td>
@@ -79,7 +79,7 @@ function PeopleSummary() {
 
           {!loading && !error && peopleSummary?.people.length === 0 && (
             <tr>
-              <td colSpan={4} className="py-4 text-muted">
+              <td colSpan={5} className="py-4 text-muted">
                 Nenhum dado de balanço para ser mostrado
               </td>
             </tr>
