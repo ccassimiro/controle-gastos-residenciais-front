@@ -91,7 +91,7 @@ function CategoriesSummary() {
         </Table>
       </div>
 
-      <LinkButton variant="secondary" to={`/people`} text="Voltar" />
+      <LinkButton variant="secondary" to={`/categories`} text="Voltar" />
     </div>
   )
 }
