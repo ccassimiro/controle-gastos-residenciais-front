@@ -9,6 +9,7 @@ import Categories from "./components/pages/Categories.tsx";
 import CreateCategory from "./components/categories/CreateCategory.tsx";
 
 import Transactions from "./components/pages/Transactions.tsx";
+import CreateTransaction from "./components/transactions/CreateTransaction.tsx";
 
 import Container from './components/layout/Container.tsx';
 
@@ -35,6 +36,8 @@ function App() {
           <Route path="/categories/create" element={<CreateCategory />} />
 
           <Route path="/transactions" element={<Transactions />} />
+          <Route path="/transactions/create" element={<CreateTransaction />} />
+
         </Routes>
       </Container>
 

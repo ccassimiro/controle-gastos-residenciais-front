@@ -44,7 +44,7 @@ function Categories() {
     load();
   }, []);
 
-  // Aviso que uma pessoa foi Criada/Atualizada.
+  // Aviso que uma categoria foi Criada.
   useEffect(() => {
     if (!successMessage) return;
 

@@ -1,0 +1,13 @@
+.transactions_container {
+    width: 750px;
+    margin: 0 auto;
+    padding: 3em;
+}
+
+.transactions_container h1 {
+    margin-bottom: 0.5em;
+}
+
+.transactions_container p {
+    color: #7B7B7B;
+}

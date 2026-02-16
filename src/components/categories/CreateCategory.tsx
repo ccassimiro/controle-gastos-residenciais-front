@@ -25,7 +25,7 @@ function CreateCategory() {
   ];
 
   const categoryInvalid = validated && description.trim() === "";
-  const categoryTooLong = validated && description.trim().length > 500;
+  const categoryTooLong = validated && description.trim().length > 400;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function CreateCategory() {
     setError("");
 
     // validações locais
-    if (description.trim() === "" || description.trim().length > 500) return;
+    if (description.trim() === "" || description.trim().length > 400) return;
 
     try {
       await createCategory({
@@ -57,17 +57,17 @@ function CreateCategory() {
 
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="description">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>Descrição</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Nome"
+            placeholder="Descrição"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             isInvalid={categoryInvalid || categoryTooLong}
           />
           <Form.Control.Feedback type="invalid">
             {categoryInvalid && <div>A descrição é obrigatória.</div>}
-            {categoryTooLong && <div>A descrição deve ter no máximo 500 caracteres.</div>}
+            {categoryTooLong && <div>A descrição deve ter no máximo 400 caracteres.</div>}
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -90,7 +90,7 @@ function CreateCategory() {
           Adicionar
         </Button>
 
-        <LinkButton variant="secondary" to={`/people`} text="Voltar" />
+        <LinkButton variant="secondary" to={`/categories`} text="Voltar" />
       </Form>
     </div>
   );
